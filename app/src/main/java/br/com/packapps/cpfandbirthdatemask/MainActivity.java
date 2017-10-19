@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         //mask CPF
         etCpf.addTextChangedListener(Mask.insert("###.###.###-##", etCpf));
+        //mask birthdate
         etBirthdate.addTextChangedListener(Mask.insert("##/##/####", etBirthdate));
 
 
