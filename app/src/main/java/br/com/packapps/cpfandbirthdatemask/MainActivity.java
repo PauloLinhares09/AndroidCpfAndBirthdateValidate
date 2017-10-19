@@ -91,12 +91,22 @@ public class MainActivity extends AppCompatActivity {
                     return s.substring(0, 11);
                 else
                     return s + "-";
+
+            //### For cases DELETING ###
+
             case 12://necessary for case to be deleted string after of the character "-" and go back continue digit
                 if (count == 0)//necessary in case of deleting
                     return s.substring(0, 11);
 
                 if (!s.contains("-"))
-                    return s.substring(0,11) + "-"+ s.substring(11,12);
+                    return s.substring(0,11) + "-"+ s.substring(11,12);//deleting character "-" and conti
+
+            case 8://necessary for case to be deleted string after of the character "-" and go back continue digit
+                if (count == 0)//deleting
+                    return s.substring(0, 7);
+
+                if (!s.substring(5,8).contains("."))
+                    return s.substring(0,7) + "."+ s.substring(7,8);//deleting character "." and conti
         }
 
         return s;
