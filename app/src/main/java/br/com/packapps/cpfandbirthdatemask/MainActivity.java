@@ -17,6 +17,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     private EditText etCpf;
+    private EditText etBirthdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         etCpf = (EditText) findViewById(R.id.etCpf);
+        etBirthdate = (EditText) findViewById(R.id.etBirthdate);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -40,12 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         //mask CPF
-        setMaskCpf("###.###.###-##");
+        etCpf.addTextChangedListener(Mask.insert("###.###.###-##", etCpf));
+        etBirthdate.addTextChangedListener(Mask.insert("##/##/####", etBirthdate));
 
 
     }
 
-    private void setMaskCpf(String maskCpf) {
-        etCpf.addTextChangedListener(Mask.insert(maskCpf, etCpf));
-    }
 }
