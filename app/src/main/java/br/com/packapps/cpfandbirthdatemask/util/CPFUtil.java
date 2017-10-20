@@ -21,9 +21,6 @@ public class CPFUtil {
 
         //continue
         int cpfArray[] = new int[11], dv1=0, dv2=0;
-        if (cpfClean.length() != 11) {
-            return false;
-        }
 
         for(int i=0;i<11;i++)
             cpfArray[i] = Integer.parseInt(cpfClean.substring(i, i+1));
