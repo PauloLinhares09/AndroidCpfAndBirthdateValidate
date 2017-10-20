@@ -5,9 +5,9 @@ package br.com.packapps.cpfandbirthdatemask.util;
  */
 
 public class CPFUtil {
-    public static boolean validateCpf(String cpf){
+    public static boolean validateCpf(String cpfFull){
         //Verify if has 11 digits
-        String cpfClean = cpf.replace(".", "");
+        String cpfClean = cpfFull.replace(".", "");
         cpfClean = cpfClean.replace("-", "");
         if (cpfClean.length() != 11)
             return false;
@@ -21,12 +21,12 @@ public class CPFUtil {
 
         //continue
         int cpfArray[] = new int[11], dv1=0, dv2=0;
-        if (cpf.length() != 11) {
+        if (cpfClean.length() != 11) {
             return false;
         }
 
         for(int i=0;i<11;i++)
-            cpfArray[i] = Integer.parseInt(cpf.substring(i, i+1));
+            cpfArray[i] = Integer.parseInt(cpfClean.substring(i, i+1));
         for(int i=0;i<9;i++)
             dv1 += cpfArray[i] * (i+1);
         cpfArray[9] = dv1 = dv1 % 11;
@@ -35,8 +35,8 @@ public class CPFUtil {
         cpfArray[10] = dv2 = dv2 % 11;
         if(dv1>9) cpfArray[9]=0;		if(dv2>9) cpfArray[10]=0;
 
-        if(Integer.parseInt(cpf.substring(9,10))!= cpfArray[9]||
-                Integer.parseInt(cpf.substring(10,11))!=cpfArray[10])
+        if(Integer.parseInt(cpfClean.substring(9,10))!= cpfArray[9]||
+                Integer.parseInt(cpfClean.substring(10,11))!=cpfArray[10])
             return false;
         else
             return true;
