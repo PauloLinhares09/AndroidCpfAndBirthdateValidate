@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import br.com.packapps.cpfandbirthdatemask.util.CPFUtil;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText etCpf;
@@ -33,19 +35,42 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "CPF: "+ etCpf.getText().toString(), Snackbar.LENGTH_LONG)
+
+                boolean valid = validateCpf();
+                if (!valid)
+                    etCpf.setError("Verifique o CPF!");
+
+                Snackbar.make(view, "CPF: "+ etCpf.getText().toString() + " -> " +valid, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                //startActivity(new Intent(MainActivity.this, SecondExampleMaskActivity.class));
             }
         });
 
 
         //mask CPF
         etCpf.addTextChangedListener(Mask.insert("###.###.###-##", etCpf));
+        //mask birthdate
         etBirthdate.addTextChangedListener(Mask.insert("##/##/####", etBirthdate));
 
 
+    }
+
+    private boolean validateCpf() {
+        //Verify if has 11 digits
+        String cpfClean = etCpf.getText().toString().replace(".", "");
+        cpfClean = cpfClean.replace("-", "");
+        if (cpfClean.length() != 11)
+            return false;
+
+        //Verify if is a number
+        try{
+            double number = Double.valueOf(cpfClean);
+        }catch (Exception e){
+            return false;
+        }
+
+        //finally verify if is a CPF valid
+        return CPFUtil.validaCpf(cpfClean);
     }
 
 }
