@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     etBirthdate.setError("Verifique a Data de Nascimento ");
 
 
-                boolean valid = validateCpf();
+                boolean valid = CPFUtil.validateCpf(etCpf.getText().toString());
                 if (!valid)
                     etCpf.setError("Verifique o CPF!");
 
@@ -74,22 +74,6 @@ public class MainActivity extends AppCompatActivity {
         return birthdateSql;
     }
 
-    private boolean validateCpf() {
-        //Verify if has 11 digits
-        String cpfClean = etCpf.getText().toString().replace(".", "");
-        cpfClean = cpfClean.replace("-", "");
-        if (cpfClean.length() != 11)
-            return false;
 
-        //Verify if is a number
-        try{
-            double number = Double.valueOf(cpfClean);
-        }catch (Exception e){
-            return false;
-        }
-
-        //finally verify if is a CPF valid
-        return CPFUtil.validaCpf(cpfClean);
-    }
 
 }

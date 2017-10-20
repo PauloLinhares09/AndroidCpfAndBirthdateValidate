@@ -5,9 +5,22 @@ package br.com.packapps.cpfandbirthdatemask.util;
  */
 
 public class CPFUtil {
-    public static boolean validaCpf(String cpf){
-        int cpfArray[] = new int[11], dv1=0, dv2=0;
+    public static boolean validateCpf(String cpf){
+        //Verify if has 11 digits
+        String cpfClean = cpf.replace(".", "");
+        cpfClean = cpfClean.replace("-", "");
+        if (cpfClean.length() != 11)
+            return false;
 
+        //Verify if is a number
+        try{
+            double number = Double.valueOf(cpfClean);
+        }catch (Exception e){
+            return false;
+        }
+
+        //continue
+        int cpfArray[] = new int[11], dv1=0, dv2=0;
         if (cpf.length() != 11) {
             return false;
         }
