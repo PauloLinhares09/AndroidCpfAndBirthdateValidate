@@ -1,4 +1,4 @@
-package br.com.packapps.cpfandbirthdatemask;
+package br.com.packapps.cpfandbirthdatemask.util;
 
 import android.text.Editable;
 import android.text.TextWatcher;

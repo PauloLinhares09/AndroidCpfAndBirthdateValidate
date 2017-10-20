@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import br.com.packapps.cpfandbirthdatemask.util.CPFUtil;
 import br.com.packapps.cpfandbirthdatemask.util.DateUtil;
+import br.com.packapps.cpfandbirthdatemask.util.Mask;
 
 
 public class MainActivity extends AppCompatActivity {
